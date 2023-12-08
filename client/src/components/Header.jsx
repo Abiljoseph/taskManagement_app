@@ -34,17 +34,18 @@ export default function Header() {
           <h1 className="text-2xl font-bold">Task Manager</h1>
         </div>
         <nav>
-          <ul className="flex space-x-4">
+          <ul className="flex space-x-4 gap-4">
             <li className="button">
               <Link to="/add-task">
                 <button>Add Task</button>
               </Link>
             </li>
             <Link to={"/"}>
-              <li className="hover:text-gray-300 cursor-pointer">Home</li>
+              <li className="hover:text-gray-300 cursor-pointer">Tasks</li>
             </Link>
-            <li className="hover:text-gray-300 cursor-pointer">Tasks</li>
-            <li className="hover:text-gray-300 cursor-pointer">About</li>
+            <Link to={"/about"}>
+              <li className="hover:text-gray-300 cursor-pointer">About</li>
+            </Link>
             <li className="hover:text-gray-300 cursor-pointer">
               <ToggleTheme />
             </li>

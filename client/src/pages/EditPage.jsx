@@ -14,9 +14,7 @@ export default function EditPage() {
   useEffect(() => {
     const fetchTask = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:5000/api/task/taskDetails/${taskId}`
-        );
+        const response = await axios.get(`/api/task/taskDetails/${taskId}`);
         const task = response.data;
         setTitle(task.title);
         setDescription(task.description);
@@ -36,7 +34,7 @@ export default function EditPage() {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:5000/api/task/editTask/${taskId}`, {
+      await axios.put(`/api/task/editTask/${taskId}`, {
         title,
         description,
         status,

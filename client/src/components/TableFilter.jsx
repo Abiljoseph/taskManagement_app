@@ -19,9 +19,7 @@ export default function TableFilter() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:5000/api/task/getAllTask/${userId}`
-        );
+        const response = await axios.get(`/api/task/getAllTask/${userId}`);
         const data = response.data;
 
         const sortedData = sortBy
@@ -40,7 +38,7 @@ export default function TableFilter() {
     };
 
     fetchData();
-  }, [userId, filterStatus, sortBy]);
+  }, [userId, filterStatus, sortBy, filteredData]);
 
   const handleFilter = (status) => {
     setFilterStatus(status);
@@ -48,6 +46,18 @@ export default function TableFilter() {
 
   const handleSort = (property) => {
     setSortBy(property);
+  };
+
+  const handleDelete = async (taskId) => {
+    try {
+      await axios.delete(`/api/task/deleteTask/${taskId}`);
+
+      setFilteredData((prevData) =>
+        prevData.filter((task) => task._id !== taskId)
+      );
+    } catch (error) {
+      console.error("Error deleting task:", error);
+    }
   };
 
   return (
@@ -122,7 +132,10 @@ export default function TableFilter() {
                     <FaEdit />
                   </button>
                 </Link>
-                <button className="ml-2 px-3 py-2 font-medium text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-600 transition duration-150 ease-in-out">
+                <button
+                  onClick={() => handleDelete(task._id)}
+                  className="ml-2 px-3 py-2 font-medium text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-600 transition duration-150 ease-in-out"
+                >
                   <MdDelete />
                 </button>
               </td>

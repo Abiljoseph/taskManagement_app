@@ -21,10 +21,7 @@ export default function SignUp() {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/signup",
-        formData
-      );
+      const res = await axios.post("/api/auth/signup", formData);
       const data = await res.data;
       console.log(data);
       if (data.success === false) {

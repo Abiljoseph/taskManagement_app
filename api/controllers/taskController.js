@@ -41,6 +41,27 @@ export const editTask = async (req, res) => {
   }
 };
 
+export const deleteTask = async (req, res) => {
+  try {
+    const { taskId } = req.params;
+    const existingTask = await Task.findById(taskId);
+    if (!existingTask) {
+      return res.status(404).json({ error: "Task not found" });
+    }
+
+    const deletedTask = await Task.findByIdAndDelete(taskId);
+
+    if (!deletedTask) {
+      return res.status(404).json({ error: "Task not found" });
+    }
+
+    res.status(200).json({ message: "Task deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 export const getTasksByUser = async (req, res) => {
   try {
     const { userId } = req.params;

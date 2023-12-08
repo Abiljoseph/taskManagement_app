@@ -7,6 +7,7 @@ import {
   signInFailure,
 } from "../redux/slices/userSlice";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -26,10 +27,7 @@ export default function SignIn() {
     e.preventDefault();
     try {
       dispatch(signInStart());
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/signin",
-        formData
-      );
+      const res = await axios.post("/api/auth/signin", formData);
       const data = await res.data;
       console.log(data);
       if (data.success === false) {
@@ -39,6 +37,15 @@ export default function SignIn() {
       dispatch(signInSuccess(data));
       navigate("/");
     } catch (error) {
+      toast.error("check your credantials", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       dispatch(signInFailure(error.message));
     }
   };

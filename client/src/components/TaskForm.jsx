@@ -20,14 +20,11 @@ export default function TaskForm({ user }) {
       return;
     }
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/task/addTask",
-        {
-          title,
-          description,
-          userId: currentUser._id,
-        }
-      );
+      const response = await axios.post("/api/task/addTask", {
+        title,
+        description,
+        userId: currentUser._id,
+      });
       toast.success("Task Added successfully", {
         position: "top-right",
         autoClose: 5000,
@@ -81,9 +78,9 @@ export default function TaskForm({ user }) {
         <div class="buttons flex justify-end mt-3">
           <div
             onClick={handleSubmit}
-            class="btn border border-indigo-500 p-1 px-4 font-semibold cursor-pointer text-gray-200 ml-2 bg-indigo-500"
+            class="btn border border-indigo-500 p-1 px-4 font-semibold cursor-pointer text-gray-200 ml-2 bg-indigo-500 uppercase"
           >
-            Post
+            Create
           </div>
         </div>
       </div>
