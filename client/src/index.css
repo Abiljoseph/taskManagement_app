@@ -1,0 +1,32 @@
+/* index.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Define themes using CSS variables */
+:root {
+  --bg-color: #000000;
+  --text-color: #ffffff;
+  --dark-bg-color: #201e84;
+  --dark-text-color: #ffffff;
+}
+
+/* Apply theme to specific element with a class */
+.theme-light {
+  --bg-color: var(--light-bg-color);
+  --text-color: var(--light-text-color);
+}
+
+.theme-dark {
+  --bg-color: var(--dark-bg-color);
+  --text-color: var(--dark-text-color);
+}
+
+/* Your other styles */
+
+/* Example usage */
+.body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
