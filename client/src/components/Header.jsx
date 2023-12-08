@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   signOutAccountError,
   signOutAccountStart,
@@ -9,6 +9,8 @@ import {
 import ToggleTheme from "./ToggleTheme";
 
 export default function Header() {
+  const { currentUser } = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -49,14 +51,16 @@ export default function Header() {
             <li className="hover:text-gray-300 cursor-pointer">
               <ToggleTheme />
             </li>
-            <li className="hover:text-gray-300 cursor-pointer">
-              <span
-                onClick={handleSignOut}
-                className="text-red-700 cursor-pointer font-semibold"
-              >
-                Sign out
-              </span>
-            </li>
+            {currentUser && (
+              <li className="hover:text-gray-300 cursor-pointer">
+                <span
+                  onClick={handleSignOut}
+                  className="text-red-700 cursor-pointer font-semibold"
+                >
+                  Sign out
+                </span>
+              </li>
+            )}
           </ul>
         </nav>
       </div>
