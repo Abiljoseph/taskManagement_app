@@ -6,9 +6,8 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://task-backend-uukk.onrender.com",
+        target: "http://localhost:5000",
         secure: false,
-        rejectUnauthorized: false,
       },
     },
   },
