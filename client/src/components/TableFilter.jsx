@@ -24,12 +24,10 @@ export default function TableFilter() {
         );
         const data = response.data;
 
-        // Sort tasks based on sortBy
         const sortedData = sortBy
           ? [...data].sort((a, b) => (a[sortBy] > b[sortBy] ? 1 : -1))
           : data;
 
-        // Filter tasks based on the filterStatus
         const filteredTasks =
           filterStatus === "all"
             ? sortedData
