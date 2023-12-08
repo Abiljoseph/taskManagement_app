@@ -17,7 +17,7 @@ export default function Header() {
   const handleSignOut = async () => {
     try {
       dispatch(signOutAccountStart());
-      const res = await fetch("http://localhost:5000/api/auth/signOut");
+      const res = await fetch("/api/auth/signOut");
       const data = await res.json();
       if (data.success === false) {
         dispatch(signOutAccountError(data.message));

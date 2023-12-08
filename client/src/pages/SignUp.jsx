@@ -26,7 +26,7 @@ export default function SignUp() {
       console.log(data);
       if (data.success === false) {
         setLoading(false);
-        setError(data.message);
+        setError(data.error);
         return;
       }
       console.log(data);
@@ -35,7 +35,7 @@ export default function SignUp() {
       navigate("/sign-in");
     } catch (error) {
       setLoading(false);
-      setError(error.message);
+      setError("An error occurred while processing your request");
     }
   };
 

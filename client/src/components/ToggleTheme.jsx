@@ -8,7 +8,7 @@ const ToggleTheme = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <div>
+    <div className="flex flex-row">
       <p>{theme}</p>
       <button
         className={`bg-${theme === "light" ? "white" : "gray-800"} text-${
